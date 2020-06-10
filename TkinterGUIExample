@@ -1,0 +1,43 @@
+from threading import Thread
+from tkinter import Tk, Frame, Label, Button, StringVar
+
+
+class HtmlDashboard(Thread):
+    """
+            Main class for GUI
+    """
+    def __init__(self):
+        super(HtmlDashboard, self).__init__()
+
+    def html_validate(self):
+        """
+            Html validate function to validate steps
+        """
+        print("button clicked")
+
+    def run(self):
+        """
+            main GUI
+        """
+        root = Tk()
+        root.title("HTML Dashboard")
+        root.minsize(width=800, height=400)
+
+        main_frame = Frame(root, width=800, height=400, bg='gray', bd=1)
+        main_frame.pack(fill="both", expand=True)
+
+        txt_pmt = StringVar()
+        pmt_start_txt = Label(main_frame, textvariable=txt_pmt, width=120, height=2, font='Helvetica 8 bold')
+        txt_pmt.set("HTML Validator")
+        pmt_start_txt.grid(row=0, columnspan=2, padx=20, pady=15)
+
+        start_button = Button(main_frame, text='Run', command=self.html_validate,
+                              bg='dark green', fg='whitesmoke', height=2, width=50)
+        start_button.grid(row=1, column=0, pady=20, padx=15)
+
+        root.mainloop()
+
+
+if __name__ == '__main__':
+    gui = HtmlDashboard()
+    gui.start()
